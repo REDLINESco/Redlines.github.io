@@ -149,30 +149,7 @@
             color: #333333;
         }
 
-        .color-options {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s ease;
-        }
-
-        .color-option.selected {
-            border-color: #e50000;
-        }
-        /* Couleurs des pastilles pour les coques (peuvent être différentes des t-shirts) */
-        .color-option[data-color="#transparent"] { background-color: #ffffff; border: 1px dashed #cccccc; } /* Simule le transparent */
-        .color-option[data-color="#000000"] { background-color: #000000; } /* Noir */
-        .color-option[data-color="#e50000"] { background-color: #e50000; } /* Rouge */
-        .color-option[data-color="#333333"] { background-color: #333333; } /* Gris foncé / Carbone */
-
+        /* Supprimé les styles .color-options et .color-option car ils ne sont plus nécessaires */
 
         .form-group input[type="file"] {
             padding: 5px;
@@ -231,10 +208,10 @@
                 flex-direction: column;
                 align-items: center;
             }
-            .case-preview, .customization-form { /* Renommé */
+            .case-preview, .customization-form {
                 max-width: 100%;
             }
-            .case-preview { /* Renommé */
+            .case-preview {
                 padding: 15px;
             }
             .customization-form {
@@ -287,17 +264,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="caseColor">Couleur de la Coque :</label>
-                        <div class="color-options">
-                            <div class="color-option selected" data-color="#transparent" data-mockup="https://via.placeholder.com/500x500/ffffff/333333?text=Coque+Transparente" title="Transparent" data-name="Transparente"></div>
-                            <div class="color-option" data-color="#000000" data-mockup="https://via.placeholder.com/500x500/000000/FFFFFF?text=Coque+Noire" title="Noir" data-name="Noire"></div>
-                            <div class="color-option" data-color="#e50000" data-mockup="https://via.placeholder.com/500x500/e50000/FFFFFF?text=Coque+Rouge" title="Rouge" data-name="Rouge"></div>
-                            <div class="color-option" data-color="#333333" data-mockup="https://via.placeholder.com/500x500/333333/FFFFFF?text=Coque+Carbone" title="Carbone" data-name="Effet Carbone"></div>
-                        </div>
-                        <input type="hidden" id="selectedColor" name="couleur" value="#transparent">
-                    </div>
-
-                    <div class="form-group">
                         <label for="quantity">Nombre d'exemplaires :</label>
                         <input type="number" id="quantity" name="quantite" value="1" min="1">
                     </div>
@@ -328,16 +294,19 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log("coques.html: Script chargé.");
 
-            const caseMockup = document.getElementById('caseMockup'); // Renommé
+            const caseMockup = document.getElementById('caseMockup');
             const previewText = document.getElementById('previewText');
             const customText = document.getElementById('customText');
-            const colorOptions = document.querySelectorAll('.color-option');
-            const selectedColorInput = document.getElementById('selectedColor');
+            // const colorOptions = document.querySelectorAll('.color-option'); // SUPPRIMÉ
+            // const selectedColorInput = document.getElementById('selectedColor'); // SUPPRIMÉ
             const customImageInput = document.getElementById('customImage');
             const uploadedImagePreview = document.getElementById('uploadedImagePreview');
-            const caseForm = document.getElementById('caseForm'); // Renommé
+            const caseForm = document.getElementById('caseForm');
 
-            let selectedColorName = 'Transparente'; // Nom par défaut pour le panier (pour les coques)
+            // Valeurs par défaut pour la couleur de la coque, car elle n'est plus sélectionnable
+            const defaultCaseColor = '#cccccc'; // Ou une autre couleur par défaut pour l'affichage visuel
+            let selectedColorName = 'Coque Standard'; // Nom pour l'affichage dans le panier
+
 
             // --- Gestion du texte de prévisualisation ---
             if (customText) {
@@ -351,27 +320,15 @@
                 console.warn("coques.html: Élément 'customText' non trouvé.");
             }
 
-            // --- Gestion de la couleur de la Coque et mise à jour du mockup ---
-            if (colorOptions.length > 0) {
-                colorOptions.forEach(option => {
-                    option.addEventListener('click', function() {
-                        colorOptions.forEach(opt => opt.classList.remove('selected'));
-                        this.classList.add('selected');
+            // --- GESTION DE LA COULEUR DE COQUE SUPPRIMÉE ICI ---
+            // if (colorOptions.length > 0) { ... } else { ... }
 
-                        selectedColorInput.value = this.dataset.color;
-                        selectedColorName = this.dataset.name;
-
-                        const mockupUrl = this.dataset.mockup;
-                        if (mockupUrl) {
-                            caseMockup.src = mockupUrl; // Renommé
-                        }
-                    });
-                });
-                // Initialiser le transparent par défaut au chargement de la page
-                document.querySelector('.color-option[data-color="#transparent"]').click();
-            } else {
-                console.warn("coques.html: Aucune option de couleur trouvée.");
+            // Initialiser l'image de la coque si nécessaire (puisqu'il n'y a plus de sélecteur de couleur)
+            if (caseMockup) {
+                // Vous pouvez définir ici l'image de base de la coque
+                caseMockup.src = "https://via.placeholder.com/500x500/cccccc/FFFFFF?text=Coque+Standard";
             }
+
 
             // --- Gestion de l'aperçu de l'image uploadée ---
             if (customImageInput) {
@@ -393,16 +350,16 @@
             }
 
             // --- Gestion de la soumission du formulaire et ajout au panier ---
-            if (caseForm) { // Renommé
+            if (caseForm) {
                 caseForm.addEventListener('submit', function(event) {
                     console.log("coques.html: Formulaire soumis (event.preventDefault() appelé).");
                     event.preventDefault();
 
                     // Récupérer les données du formulaire
-                    const phoneModel = document.getElementById('phoneModel').value; // Nouveau champ
+                    const phoneModel = document.getElementById('phoneModel').value;
                     const quantity = parseInt(document.getElementById('quantity').value);
                     const customTextValue = customText.value.trim();
-                    const color = selectedColorInput.value;
+                    // const color = selectedColorInput.value; // SUPPRIMÉ
                     const customImageFile = customImageInput.files[0];
 
                     if (quantity < 1) {
@@ -413,10 +370,10 @@
                     // Créer un objet pour l'article du panier
                     const cartItem = {
                         id: Date.now().toString(),
-                        name: "Coque Personnalisée REDLINES", // Nom spécifique pour la coque
+                        name: "Coque Personnalisée REDLINES",
                         size: phoneModel, // Utilise le champ 'size' pour stocker le modèle de téléphone pour la cohérence du panier
-                        color: color,
-                        color_name: selectedColorName,
+                        color: defaultCaseColor, // Utilise la couleur par défaut
+                        color_name: selectedColorName, // Utilise le nom de couleur par défaut
                         quantity: quantity,
                         customText: customTextValue,
                         customImageName: customImageFile ? customImageFile.name : null,
@@ -437,13 +394,14 @@
                     // Optionnel: Réinitialiser le formulaire après l'ajout
                     caseForm.reset();
                     previewText.textContent = 'Votre Texte Ici';
-                    caseMockup.src = "https://via.placeholder.com/500x500/cccccc/FFFFFF?text=Coque+Standard"; // Retour à l'image par défaut
+                    caseMockup.src = "https://via.placeholder.com/500x500/cccccc/FFFFFF?text=Coque+Standard";
                     uploadedImagePreview.src = '';
                     uploadedImagePreview.style.display = 'none';
-                    document.querySelector('.color-option.selected').classList.remove('selected');
-                    document.querySelector('.color-option[data-color="#transparent"]').classList.add('selected'); // Réinitialiser le transparent
-                    selectedColorName = 'Transparente';
-                    selectedColorInput.value = '#transparent';
+                    // Suppression des lignes de réinitialisation de couleur
+                    // document.querySelector('.color-option.selected').classList.remove('selected');
+                    // document.querySelector('.color-option[data-color="#transparent"]').classList.add('selected');
+                    // selectedColorName = 'Transparente';
+                    // selectedColorInput.value = '#transparent';
                 });
             } else {
                 console.error("coques.html: Élément 'caseForm' non trouvé. Le formulaire ne sera pas fonctionnel.");
