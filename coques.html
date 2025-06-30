@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REDLINES - T-shirts Personnalisables</title>
+    <title>REDLINES - Coques de Téléphone Personnalisables</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Styles CSS Généraux (Repris de l'accueil) */
+        /* Styles CSS Généraux (Repris de l'accueil et tshirts) */
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
@@ -56,9 +56,9 @@
             color: #e50000;
         }
 
-        /* Styles spécifiques à la page T-shirt */
+        /* Styles spécifiques à la page Coque (similaires aux T-shirts) */
         .page-title {
-            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Chakra+Petch', sans-serif;
             font-size: 3em;
             color: #e50000;
             margin-top: 60px;
@@ -76,7 +76,7 @@
             padding: 0 20px;
         }
 
-        .tshirt-preview {
+        .case-preview { /* Renommé de .tshirt-preview */
             flex: 1; /* Prend l'espace disponible */
             min-width: 300px; /* Taille minimale */
             max-width: 500px; /* Taille maximale */
@@ -87,7 +87,7 @@
             padding: 20px;
         }
 
-        .tshirt-preview img {
+        .case-preview img { /* Renommé de .tshirt-preview img */
             width: 100%;
             height: auto;
             display: block;
@@ -99,16 +99,15 @@
             top: 50%; /* Centre le texte verticalement */
             left: 50%; /* Centre le texte horizontalement */
             transform: translate(-50%, -50%); /* Ajuste le centrage parfait */
-            font-family: 'Chakra Petch', sans-serif; /* Police par défaut */
+            font-family: 'Chakra Petch', sans-serif;
             font-size: 2em; /* Taille par défaut du texte */
-            color: #333333; /* Couleur du texte sur le t-shirt */
+            color: #333333; /* Couleur du texte sur la coque */
             text-align: center;
             width: 80%; /* Pour que le texte ne déborde pas */
             word-wrap: break-word; /* Casse les mots longs */
-            white-space: pre-wrap; /* MAINTIENT LES SAUTS DE LIGNE */
         }
 
-        .uploaded-image-preview { /* Pour l'aperçu de l'image uploadée */
+        .uploaded-image-preview {
             max-width: 100px;
             max-height: 100px;
             margin-top: 15px;
@@ -149,32 +148,6 @@
             background-color: #ffffff;
             color: #333333;
         }
-
-        .color-options {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s ease;
-        }
-
-        .color-option.selected {
-            border-color: #e50000;
-        }
-        /* Couleurs des pastilles */
-        .color-option[data-color="#000000"] { background-color: #000000; } /* Noir */
-        .color-option[data-color="#ffffff"] { background-color: #ffffff; border: 1px solid #ccc; } /* Blanc (avec bordure visible) */
-        .color-option[data-color="#e50000"] { background-color: #e50000; } /* Rouge */
-        .color-option[data-color="#0056b3"] { background-color: #0056b3; } /* Bleu */
-        .color-option[data-color="#999999"] { background-color: #999999; } /* Gris */
-
 
         .form-group input[type="file"] {
             padding: 5px;
@@ -220,7 +193,7 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .logo-img {
-                max-width: 200px; /* Ajustement du logo pour mobile */
+                max-width: 200px;
             }
             nav ul {
                 flex-direction: column;
@@ -233,10 +206,10 @@
                 flex-direction: column;
                 align-items: center;
             }
-            .tshirt-preview, .customization-form {
-                max-width: 100%; /* Permet aux blocs de prendre toute la largeur sur mobile */
+            .case-preview, .customization-form {
+                max-width: 100%;
             }
-            .tshirt-preview {
+            .case-preview {
                 padding: 15px;
             }
             .customization-form {
@@ -255,46 +228,46 @@
                 <li><a href="tshirts.html">T-shirts Personnalisables</a></li>
                 <li><a href="coques.html">Coques de Téléphone</a></li>
                 <li><a href="about.html">À Propos</a></li>
-                <li><a href="panier.html">Panier</a></li> </ul>
+                <li><a href="panier.html">Panier</a></li>
+            </ul>
         </nav>
     </header>
 
     <main>
-        <h1 class="page-title">Créez Votre T-shirt Personnalisé</h1>
+        <h1 class="page-title">Créez Votre Coque de Téléphone Personnalisée</h1>
 
         <section class="customization-section">
-            <div class="tshirt-preview">
-                <img id="tshirtMockup" src="https://via.placeholder.com/500x500/cccccc/FFFFFF?text=T-shirt+Standard" alt="Aperçu du T-shirt">
+            <div class="case-preview">
+                <img id="caseMockup" src="coques.png" alt="Aperçu de la Coque REDLINES">
                 <div id="previewText" class="preview-text">Votre Texte Ici</div>
                 <img id="uploadedImagePreview" class="uploaded-image-preview" src="" alt="Image personnalisée">
 
                 <p style="font-size: 0.85em; color: #777; margin-top: 20px;">
-                    *Note sur l'aperçu : Le texte s'adapte automatiquement à la ligne. Le déplacement interactif n'est pas possible avec cette configuration simple.
+                    *Note : Cet aperçu est un exemple simple. Les options avancées (déplacement/redimensionnement interactif) nécessitent un outil de personnalisation externe.
                 </p>
             </div>
 
             <div class="customization-form">
-                <form id="tshirtForm">
+                <form id="caseForm">
                     <div class="form-group">
-                        <label for="tshirtColor">Couleur du T-shirt :</label>
-                        <div class="color-options">
-                            <div class="color-option selected" data-color="#ffffff" data-mockup="https://via.placeholder.com/500x500/ffffff/333333?text=T-shirt+Blanc" title="Blanc" data-name="Blanc"></div>
-                            <div class="color-option" data-color="#000000" data-mockup="https://via.placeholder.com/500x500/000000/FFFFFF?text=T-shirt+Noir" title="Noir" data-name="Noir"></div>
-                            <div class="color-option" data-color="#e50000" data-mockup="https://via.placeholder.com/500x500/e50000/FFFFFF?text=T-shirt+Rouge" title="Rouge" data-name="Rouge"></div>
-                            <div class="color-option" data-color="#0056b3" data-mockup="https://via.placeholder.com/500x500/0056b3/FFFFFF?text=T-shirt+Bleu" title="Bleu" data-name="Bleu"></div>
-                            <div class="color-option" data-color="#999999" data-mockup="https://via.placeholder.com/500x500/999999/FFFFFF?text=T-shirt+Gris" title="Gris" data-name="Gris"></div>
-                        </div>
-                        <input type="hidden" id="selectedColor" name="couleur" value="#ffffff">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tshirtSize">Taille :</label>
-                        <select id="tshirtSize" name="taille">
-                            <option value="S">S</option>
-                            <option value="M" selected>M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
+                        <label for="phoneModel">Modèle de Téléphone :</label>
+                        <select id="phoneModel" name="modele_telephone">
+                            <option value="iPhone 12">iPhone 12</option>
+                            <option value="iPhone 12 mini">iPhone 12 mini</option>
+                            <option value="iPhone 12 Pro">iPhone 12 Pro</option>
+                            <option value="iPhone 12 Pro Max">iPhone 12 Pro Max</option>
+                            <option value="iPhone 13">iPhone 13</option>
+                            <option value="iPhone 13 mini">iPhone 13 mini</option>
+                            <option value="iPhone 13 Pro">iPhone 13 Pro</option>
+                            <option value="iPhone 13 Pro Max">iPhone 13 Pro Max</option>
+                            <option value="iPhone 14">iPhone 14</option>
+                            <option value="iPhone 14 Plus">iPhone 14 Plus</option>
+                            <option value="iPhone 14 Pro">iPhone 14 Pro</option>
+                            <option value="iPhone 14 Pro Max">iPhone 14 Pro Max</option>
+                            <option value="iPhone 15">iPhone 15</option>
+                            <option value="iPhone 15 Plus">iPhone 15 Plus</option>
+                            <option value="iPhone 15 Pro">iPhone 15 Pro</option>
+                            <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
                         </select>
                     </div>
 
@@ -304,28 +277,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="fontSelector">Police d'écriture :</label>
-                        <select id="fontSelector" name="police_ecriture">
-                            <option value="'Chakra Petch', sans-serif" style="font-family: 'Chakra Petch', sans-serif;">Chakra Petch (Dynamique)</option>
-                            <option value="'Montserrat', sans-serif" style="font-family: 'Montserrat', sans-serif;">Montserrat (Moderne)</option>
-                            <option value="'Roboto', sans-serif" style="font-family: 'Roboto', sans-serif;">Roboto (Classique)</option>
-                            <option value="'Open Sans', sans-serif" style="font-family: 'Open Sans', sans-serif;">Open Sans (Lisible)</option>
-                            <option value="'Permanent Marker', cursive" style="font-family: 'Permanent Marker', cursive;">Permanent Marker (Manuscrit)</option>
-                            <option value="serif">Serif (Élégant)</option>
-                            <option value="sans-serif">Sans-serif (Standard)</option>
-                            <option value="monospace">Monospace (Code)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="customText">Texte à inscrire sur le T-shirt :</label>
-                        <textarea id="customText" name="texte_personnalise" rows="4" placeholder="Votre message, nom, numéro... (Appuyez sur Entrée pour un saut de ligne)"></textarea>
+                        <label for="customText">Texte à inscrire sur la Coque :</label>
+                        <textarea id="customText" name="texte_personnalise" rows="4" placeholder="Votre nom, une citation, etc."></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="customImage">Image à ajouter (optionnel) :</label>
                         <input type="file" id="customImage" name="image_personnalisee" accept="image/*">
-                        <p style="font-size: 0.85em; color: #777;">*L'image sera ajoutée en dessous de l'aperçu du t-shirt. Pas de positionnement interactif direct.</p>
+                        <p style="font-size: 0.85em; color: #777;">*L'image sera ajoutée en dessous de l'aperçu de la coque. Pas de positionnement interactif direct.</p>
                     </div>
 
                     <button type="submit" class="btn-submit">Ajouter à ma commande</button>
@@ -341,19 +300,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log("tshirts.html: Script chargé.");
+            console.log("coques.html: Script chargé.");
 
-            const tshirtMockup = document.getElementById('tshirtMockup');
+            const caseMockup = document.getElementById('caseMockup');
             const previewText = document.getElementById('previewText');
             const customText = document.getElementById('customText');
-            const colorOptions = document.querySelectorAll('.color-option');
-            const selectedColorInput = document.getElementById('selectedColor');
             const customImageInput = document.getElementById('customImage');
             const uploadedImagePreview = document.getElementById('uploadedImagePreview');
-            const tshirtForm = document.getElementById('tshirtForm');
-            const fontSelector = document.getElementById('fontSelector'); // NOUVEAU
+            const caseForm = document.getElementById('caseForm');
 
-            let selectedColorName = 'Blanc';
+            // Valeurs par défaut pour la couleur de la coque, car elle n'est plus sélectionnable
+            const defaultCaseColor = '#cccccc'; // Couleur interne pour le mockup par défaut si pas d'image
+            let selectedColorName = 'Coque Standard'; // Nom pour l'affichage dans le panier
+
 
             // --- Gestion du texte de prévisualisation ---
             if (customText) {
@@ -364,40 +323,14 @@
                     }
                 });
             } else {
-                console.warn("tshirts.html: Élément 'customText' non trouvé.");
+                console.warn("coques.html: Élément 'customText' non trouvé.");
             }
 
-            // --- Gestion de la police d'écriture --- NOUVEAU
-            if (fontSelector) {
-                fontSelector.addEventListener('change', function() {
-                    previewText.style.fontFamily = this.value;
-                });
-                // Appliquer la police par défaut au chargement
-                previewText.style.fontFamily = fontSelector.value;
-            } else {
-                console.warn("tshirts.html: Élément 'fontSelector' non trouvé.");
-            }
-
-
-            // --- Gestion de la couleur du T-shirt et mise à jour du mockup ---
-            if (colorOptions.length > 0) {
-                colorOptions.forEach(option => {
-                    option.addEventListener('click', function() {
-                        colorOptions.forEach(opt => opt.classList.remove('selected'));
-                        this.classList.add('selected');
-
-                        selectedColorInput.value = this.dataset.color;
-                        selectedColorName = this.dataset.name;
-
-                        const mockupUrl = this.dataset.mockup;
-                        if (mockupUrl) {
-                            tshirtMockup.src = mockupUrl;
-                        }
-                    });
-                });
-                document.querySelector('.color-option[data-color="#ffffff"]').click();
-            } else {
-                console.warn("tshirts.html: Aucune option de couleur trouvée.");
+            // Initialiser l'image de la coque si nécessaire (puisqu'il n'y a plus de sélecteur de couleur)
+            if (caseMockup) {
+                // L'image de la coque est maintenant 'coque.png'
+                // Pas besoin de changer la source ici à moins de vouloir changer d'image de base
+                // caseMockup.src = "coque.png"; // Cette ligne est redondante si le HTML est déjà bon
             }
 
 
@@ -417,22 +350,19 @@
                     }
                 });
             } else {
-                console.warn("tshirts.html: Élément 'customImage' non trouvé.");
+                console.warn("coques.html: Élément 'customImage' non trouvé.");
             }
 
-
             // --- Gestion de la soumission du formulaire et ajout au panier ---
-            if (tshirtForm) {
-                tshirtForm.addEventListener('submit', function(event) {
-                    console.log("tshirts.html: Formulaire soumis (event.preventDefault() appelé).");
+            if (caseForm) {
+                caseForm.addEventListener('submit', function(event) {
+                    console.log("coques.html: Formulaire soumis (event.preventDefault() appelé).");
                     event.preventDefault();
 
                     // Récupérer les données du formulaire
-                    const size = document.getElementById('tshirtSize').value;
+                    const phoneModel = document.getElementById('phoneModel').value;
                     const quantity = parseInt(document.getElementById('quantity').value);
                     const customTextValue = customText.value.trim();
-                    const color = selectedColorInput.value;
-                    const fontFamily = fontSelector.value; // NOUVEAU
                     const customImageFile = customImageInput.files[0];
 
                     if (quantity < 1) {
@@ -443,17 +373,16 @@
                     // Créer un objet pour l'article du panier
                     const cartItem = {
                         id: Date.now().toString(),
-                        name: "T-shirt Personnalisé REDLINES",
-                        size: size,
-                        color: color,
-                        color_name: selectedColorName,
+                        name: "Coque Personnalisée REDLINES",
+                        size: phoneModel, // Utilise le champ 'size' pour stocker le modèle de téléphone pour la cohérence du panier
+                        color: defaultCaseColor, // Utilise la couleur par défaut
+                        color_name: selectedColorName, // Utilise le nom de couleur par défaut
                         quantity: quantity,
                         customText: customTextValue,
-                        fontFamily: fontFamily, // NOUVEAU
                         customImageName: customImageFile ? customImageFile.name : null,
                     };
 
-                    console.log("tshirts.html: Article à ajouter:", cartItem);
+                    console.log("coques.html: Article à ajouter:", cartItem);
 
                     // Récupérer le panier existant ou initialiser un nouveau panier
                     let cart = JSON.parse(localStorage.getItem('redlinesCart')) || [];
@@ -461,33 +390,24 @@
 
                     // Sauvegarder le panier mis à jour dans localStorage
                     localStorage.setItem('redlinesCart', JSON.stringify(cart));
-                    console.log("tshirts.html: Panier sauvegardé dans localStorage:", cart);
+                    console.log("coques.html: Panier sauvegardé dans localStorage:", cart);
 
-                    alert("T-shirt ajouté au panier ! Vous pouvez maintenant aller au panier pour voir vos articles.");
+                    alert("Coque ajoutée au panier ! Vous pouvez maintenant aller au panier pour voir vos articles.");
 
                     // Optionnel: Réinitialiser le formulaire après l'ajout
-                    tshirtForm.reset();
+                    caseForm.reset();
                     previewText.textContent = 'Votre Texte Ici';
-                    previewText.style.fontFamily = fontSelector.options[0].value; // Réinitialise la police
-                    tshirtMockup.src = "https://via.placeholder.com/500x500/cccccc/FFFFFF?text=T-shirt+Standard";
+                    // Ici, l'image de la coque est déjà "coque.png", pas besoin de la réinitialiser à un placeholder.
                     uploadedImagePreview.src = '';
                     uploadedImagePreview.style.display = 'none';
-                    document.querySelector('.color-option.selected').classList.remove('selected');
-                    document.querySelector('.color-option[data-color="#ffffff"]').classList.add('selected');
-                    selectedColorName = 'Blanc';
-                    selectedColorInput.value = '#ffffff';
                 });
             } else {
-                console.error("tshirts.html: Élément 'tshirtForm' non trouvé. Le formulaire ne sera pas fonctionnel.");
+                console.error("coques.html: Élément 'caseForm' non trouvé. Le formulaire ne sera pas fonctionnel.");
             }
 
             // Initialiser l'aperçu du texte au chargement de la page si du texte est déjà là
             if (customText && previewText) {
                 previewText.textContent = customText.value || 'Votre Texte Ici';
-                // Assurer que la police par défaut est appliquée au chargement
-                if (fontSelector) {
-                    previewText.style.fontFamily = fontSelector.value;
-                }
             }
         });
     </script>
