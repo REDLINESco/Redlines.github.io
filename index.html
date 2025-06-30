@@ -23,22 +23,22 @@
             background-color: #0d0d0d;
             padding: 20px 0;
             border-bottom: 3px solid #e50000; /* Ligne rouge distinctive */
+            display: flex; /* Utilisation de flexbox pour centrer le logo et la nav */
+            flex-direction: column; /* Pour empiler logo et nav */
+            align-items: center; /* Pour centrer horizontalement */
         }
 
-        .logo {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 2.8em;
-            color: #e50000; /* Rouge vif pour le logo */
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin: 0;
+        .logo-img { /* Nouveau style pour le logo image */
+            max-width: 200px; /* Ajustez la taille selon vos besoins */
+            height: auto;
+            display: block; /* Pour éviter l'espace en dessous de l'image */
+            margin-bottom: 10px; /* Espace entre le logo et la nav */
         }
 
         nav ul {
             list-style: none;
             padding: 0;
-            margin: 10px 0 0;
+            margin: 0; /* Supprimez le margin-top car il est géré par le margin-bottom du logo */
             display: flex;
             justify-content: center;
             gap: 30px;
@@ -203,7 +203,7 @@
 <body>
 
     <header>
-        <div class="logo">REDLINES</div>
+        <img src="logo.png" alt="Logo REDLINES" class="logo-img">
         <nav>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
