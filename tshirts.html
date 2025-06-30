@@ -20,16 +20,16 @@
         }
 
         header {
-            background-color: #f8f8f8;
+            background-color: #f8f8f8; /* Un blanc cassé pour l'en-tête */
             padding: 20px 0;
-            border-bottom: 3px solid #e50000;
+            border-bottom: 3px solid #e50000; /* Ligne rouge distinctive */
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .logo-img {
-            max-width: 300px;
+            max-width: 300px; /* Taille du logo */
             height: auto;
             display: block;
             margin-bottom: 10px;
@@ -45,7 +45,7 @@
         }
 
         nav a {
-            color: #333333;
+            color: #333333; /* Liens de navigation en noir */
             text-decoration: none;
             font-weight: 700;
             padding: 5px 10px;
@@ -167,9 +167,10 @@
         .color-option.selected {
             border-color: #e50000;
         }
-        .color-option[data-color="#000000"] { background-color: #000000; }
-        .color-option[data-color="#ffffff"] { background-color: #ffffff; border: 1px solid #ccc; } /* Bordure pour blanc */
-        .color-option[data-color="#e50000"] { background-color: #e50000; }
+        /* Couleurs des pastilles */
+        .color-option[data-color="#000000"] { background-color: #000000; } /* Noir */
+        .color-option[data-color="#ffffff"] { background-color: #ffffff; border: 1px solid #ccc; } /* Blanc (avec bordure visible) */
+        .color-option[data-color="#e50000"] { background-color: #e50000; } /* Rouge */
         .color-option[data-color="#0056b3"] { background-color: #0056b3; } /* Bleu */
         .color-option[data-color="#999999"] { background-color: #999999; } /* Gris */
 
@@ -218,7 +219,7 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .logo-img {
-                max-width: 200px;
+                max-width: 200px; /* Ajustement du logo pour mobile */
             }
             nav ul {
                 flex-direction: column;
@@ -248,13 +249,13 @@
     <header>
         <img src="logo.png" alt="Logo REDLINES" class="logo-img">
         <nav>
-    <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="tshirts.html">T-shirts Personnalisables</a></li>
-        <li><a href="coques.html">Coques de Téléphone</a></li>
-        <li><a href="about.html">À Propos</a></li>
-        <li><a href="panier.html">Panier</a></li> </ul>
-</nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="tshirts.html">T-shirts Personnalisables</a></li>
+                <li><a href="coques.html">Coques de Téléphone</a></li>
+                <li><a href="about.html">À Propos</a></li>
+                <li><a href="panier.html">Panier</a></li> </ul>
+        </nav>
     </header>
 
     <main>
@@ -273,17 +274,15 @@
 
             <div class="customization-form">
                 <form id="tshirtForm">
-    <button type="submit" class="btn-submit">Ajouter à ma commande</button>
-</form>
                     <div class="form-group">
                         <label for="tshirtColor">Couleur du T-shirt :</label>
                         <div class="color-options">
-    <div class="color-option selected" data-color="#ffffff" data-mockup="https://via.placeholder.com/500x500/ffffff/333333?text=T-shirt+Blanc" title="Blanc" data-name="Blanc"></div>
-    <div class="color-option" data-color="#000000" data-mockup="https://via.placeholder.com/500x500/000000/FFFFFF?text=T-shirt+Noir" title="Noir" data-name="Noir"></div>
-    <div class="color-option" data-color="#e50000" data-mockup="https://via.placeholder.com/500x500/e50000/FFFFFF?text=T-shirt+Rouge" title="Rouge" data-name="Rouge"></div>
-    <div class="color-option" data-color="#0056b3" data-mockup="https://via.placeholder.com/500x500/0056b3/FFFFFF?text=T-shirt+Bleu" title="Bleu" data-name="Bleu"></div>
-    <div class="color-option" data-color="#999999" data-mockup="https://via.placeholder.com/500x500/999999/FFFFFF?text=T-shirt+Gris" title="Gris" data-name="Gris"></div>
-</div>
+                            <div class="color-option selected" data-color="#ffffff" data-mockup="https://via.placeholder.com/500x500/ffffff/333333?text=T-shirt+Blanc" title="Blanc" data-name="Blanc"></div>
+                            <div class="color-option" data-color="#000000" data-mockup="https://via.placeholder.com/500x500/000000/FFFFFF?text=T-shirt+Noir" title="Noir" data-name="Noir"></div>
+                            <div class="color-option" data-color="#e50000" data-mockup="https://via.placeholder.com/500x500/e50000/FFFFFF?text=T-shirt+Rouge" title="Rouge" data-name="Rouge"></div>
+                            <div class="color-option" data-color="#0056b3" data-mockup="https://via.placeholder.com/500x500/0056b3/FFFFFF?text=T-shirt+Bleu" title="Bleu" data-name="Bleu"></div>
+                            <div class="color-option" data-color="#999999" data-mockup="https://via.placeholder.com/500x500/999999/FFFFFF?text=T-shirt+Gris" title="Gris" data-name="Gris"></div>
+                        </div>
                         <input type="hidden" id="selectedColor" name="couleur" value="#ffffff">
                     </div>
 
@@ -322,115 +321,142 @@
 
     <footer>
         <p>&copy; 2025 REDLINES. Tous droits réservés.</p>
-        <p><a href="about.html">En savoir plus sur REDLINES</a> | Contactez-nous</p>
+        <p><a href="about.html">En savoir plus sur REDLINES</a> | <a href="contact.html">Contactez-nous</a></p>
     </footer>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const tshirtMockup = document.getElementById('tshirtMockup');
-        const previewText = document.getElementById('previewText');
-        const customText = document.getElementById('customText');
-        const colorOptions = document.querySelectorAll('.color-option');
-        const selectedColorInput = document.getElementById('selectedColor');
-        const customImageInput = document.getElementById('customImage');
-        const uploadedImagePreview = document.getElementById('uploadedImagePreview');
-        const tshirtForm = document.getElementById('tshirtForm');
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("tshirts.html: Script chargé."); // Débug: Vérifie le chargement du script
 
-        let selectedColorName = 'Blanc'; // Pour le nom de la couleur dans le panier
+            const tshirtMockup = document.getElementById('tshirtMockup');
+            const previewText = document.getElementById('previewText');
+            const customText = document.getElementById('customText');
+            const colorOptions = document.querySelectorAll('.color-option');
+            const selectedColorInput = document.getElementById('selectedColor');
+            const customImageInput = document.getElementById('customImage');
+            const uploadedImagePreview = document.getElementById('uploadedImagePreview');
+            const tshirtForm = document.getElementById('tshirtForm');
 
-        // --- Gestion du texte de prévisualisation ---
-        customText.addEventListener('input', function() {
-            previewText.textContent = this.value;
-            if (this.value.trim() === '') {
-                previewText.textContent = 'Votre Texte Ici';
-            }
-        });
+            let selectedColorName = 'Blanc'; // Nom par défaut pour le panier
 
-        // --- Gestion de la couleur du T-shirt et mise à jour du mockup ---
-        colorOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                colorOptions.forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-
-                selectedColorInput.value = this.dataset.color;
-                selectedColorName = this.dataset.name; // Met à jour le nom de la couleur
-
-                const mockupUrl = this.dataset.mockup;
-                if (mockupUrl) {
-                    tshirtMockup.src = mockupUrl;
-                }
-            });
-        });
-
-        // --- Gestion de l'aperçu de l'image uploadée ---
-        customImageInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadedImagePreview.src = e.target.result;
-                    uploadedImagePreview.style.display = 'block';
-                };
-                reader.readAsDataURL(this.files[0]);
+            // --- Gestion du texte de prévisualisation ---
+            if (customText) { // Vérification si l'élément existe
+                customText.addEventListener('input', function() {
+                    previewText.textContent = this.value;
+                    if (this.value.trim() === '') {
+                        previewText.textContent = 'Votre Texte Ici';
+                    }
+                });
             } else {
-                uploadedImagePreview.src = '';
-                uploadedImagePreview.style.display = 'none';
-            }
-        });
-
-        // --- Gestion de la soumission du formulaire et ajout au panier ---
-        tshirtForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Récupérer les données du formulaire
-            const size = document.getElementById('tshirtSize').value;
-            const quantity = parseInt(document.getElementById('quantity').value);
-            const customTextValue = customText.value.trim();
-            const color = selectedColorInput.value;
-            const customImageFile = customImageInput.files[0];
-
-            if (quantity < 1) {
-                alert("Veuillez entrer une quantité valide (au moins 1).");
-                return;
+                console.warn("tshirts.html: Élément 'customText' non trouvé.");
             }
 
-            // Créer un objet pour l'article du panier
-            const cartItem = {
-                id: Date.now().toString(), // ID unique basé sur le timestamp
-                name: "T-shirt Personnalisé REDLINES",
-                size: size,
-                color: color,
-                color_name: selectedColorName, // Nom de la couleur pour affichage
-                quantity: quantity,
-                customText: customTextValue,
-                customImageName: customImageFile ? customImageFile.name : null,
-                // Note: L'image elle-même n'est pas stockée ici pour des raisons de taille et de complexité (backend nécessaire)
-            };
 
-            // Récupérer le panier existant ou initialiser un nouveau panier
-            let cart = JSON.parse(localStorage.getItem('redlinesCart')) || [];
-            cart.push(cartItem); // Ajouter le nouvel article
+            // --- Gestion de la couleur du T-shirt et mise à jour du mockup ---
+            if (colorOptions.length > 0) { // Vérification si les éléments existent
+                colorOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        colorOptions.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
 
-            // Sauvegarder le panier mis à jour dans localStorage
-            localStorage.setItem('redlinesCart', JSON.stringify(cart));
+                        selectedColorInput.value = this.dataset.color;
+                        selectedColorName = this.dataset.name; // Met à jour le nom de la couleur
 
-            alert("T-shirt ajouté au panier ! Vous pouvez maintenant aller au panier pour voir vos articles.");
+                        const mockupUrl = this.dataset.mockup;
+                        if (mockupUrl) {
+                            tshirtMockup.src = mockupUrl;
+                        }
+                    });
+                });
+                // Initialiser le blanc par défaut au chargement de la page
+                document.querySelector('.color-option[data-color="#ffffff"]').click();
+            } else {
+                console.warn("tshirts.html: Aucune option de couleur trouvée.");
+            }
 
-            // Optionnel: Réinitialiser le formulaire après l'ajout
-            tshirtForm.reset();
-            previewText.textContent = 'Votre Texte Ici';
-            tshirtMockup.src = "https://via.placeholder.com/500x500/cccccc/FFFFFF?text=T-shirt+Standard"; // Retour à l'image par défaut
-            uploadedImagePreview.src = '';
-            uploadedImagePreview.style.display = 'none';
-            document.querySelector('.color-option.selected').classList.remove('selected');
-            document.querySelector('.color-option[data-color="#ffffff"]').classList.add('selected'); // Réinitialiser le blanc
-            selectedColorName = 'Blanc';
-            selectedColorInput.value = '#ffffff';
+
+            // --- Gestion de l'aperçu de l'image uploadée ---
+            if (customImageInput) { // Vérification si l'élément existe
+                customImageInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            uploadedImagePreview.src = e.target.result;
+                            uploadedImagePreview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                    } else {
+                        uploadedImagePreview.src = '';
+                        uploadedImagePreview.style.display = 'none';
+                    }
+                });
+            } else {
+                console.warn("tshirts.html: Élément 'customImage' non trouvé.");
+            }
+
+
+            // --- Gestion de la soumission du formulaire et ajout au panier ---
+            if (tshirtForm) { // Vérification si l'élément existe
+                tshirtForm.addEventListener('submit', function(event) {
+                    console.log("tshirts.html: Formulaire soumis (event.preventDefault() appelé)."); // Débug: Confirmation de la soumission
+                    event.preventDefault();
+
+                    // Récupérer les données du formulaire
+                    const size = document.getElementById('tshirtSize').value;
+                    const quantity = parseInt(document.getElementById('quantity').value);
+                    const customTextValue = customText.value.trim();
+                    const color = selectedColorInput.value;
+                    const customImageFile = customImageInput.files[0];
+
+                    if (quantity < 1) {
+                        alert("Veuillez entrer une quantité valide (au moins 1).");
+                        return;
+                    }
+
+                    // Créer un objet pour l'article du panier
+                    const cartItem = {
+                        id: Date.now().toString(), // ID unique basé sur le timestamp
+                        name: "T-shirt Personnalisé REDLINES",
+                        size: size,
+                        color: color,
+                        color_name: selectedColorName, // Nom de la couleur pour affichage
+                        quantity: quantity,
+                        customText: customTextValue,
+                        customImageName: customImageFile ? customImageFile.name : null,
+                    };
+
+                    console.log("tshirts.html: Article à ajouter:", cartItem); // Débug: Vérifie l'objet créé
+
+                    // Récupérer le panier existant ou initialiser un nouveau panier
+                    let cart = JSON.parse(localStorage.getItem('redlinesCart')) || [];
+                    cart.push(cartItem); // Ajouter le nouvel article
+
+                    // Sauvegarder le panier mis à jour dans localStorage
+                    localStorage.setItem('redlinesCart', JSON.stringify(cart));
+                    console.log("tshirts.html: Panier sauvegardé dans localStorage:", cart); // Débug: Vérifie la sauvegarde
+
+                    alert("T-shirt ajouté au panier ! Vous pouvez maintenant aller au panier pour voir vos articles.");
+
+                    // Optionnel: Réinitialiser le formulaire après l'ajout
+                    tshirtForm.reset();
+                    previewText.textContent = 'Votre Texte Ici';
+                    tshirtMockup.src = "https://via.placeholder.com/500x500/cccccc/FFFFFF?text=T-shirt+Standard"; // Retour à l'image par défaut
+                    uploadedImagePreview.src = '';
+                    uploadedImagePreview.style.display = 'none';
+                    document.querySelector('.color-option.selected').classList.remove('selected');
+                    document.querySelector('.color-option[data-color="#ffffff"]').classList.add('selected'); // Réinitialiser le blanc
+                    selectedColorName = 'Blanc';
+                    selectedColorInput.value = '#ffffff';
+                });
+            } else {
+                console.error("tshirts.html: Élément 'tshirtForm' non trouvé. Le formulaire ne sera pas fonctionnel.");
+            }
+
+            // Initialiser l'aperçu du texte au chargement de la page si du texte est déjà là
+            if (customText && previewText) {
+                previewText.textContent = customText.value || 'Votre Texte Ici';
+            }
         });
-
-        // Initialiser l'aperçu du texte et de la couleur au chargement de la page
-        previewText.textContent = customText.value || 'Votre Texte Ici';
-        document.querySelector('.color-option[data-color="#ffffff"]').click(); // Sélectionne le blanc par défaut au chargement
-    });
-</script>
+    </script>
 </body>
 </html>
