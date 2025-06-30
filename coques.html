@@ -149,8 +149,6 @@
             color: #333333;
         }
 
-        /* Supprimé les styles .color-options et .color-option car ils ne sont plus nécessaires */
-
         .form-group input[type="file"] {
             padding: 5px;
         }
@@ -254,13 +252,23 @@
                     <div class="form-group">
                         <label for="phoneModel">Modèle de Téléphone :</label>
                         <select id="phoneModel" name="modele_telephone">
+                            <option value="iPhone 12">iPhone 12</option>
+                            <option value="iPhone 12 mini">iPhone 12 mini</option>
+                            <option value="iPhone 12 Pro">iPhone 12 Pro</option>
+                            <option value="iPhone 12 Pro Max">iPhone 12 Pro Max</option>
+                            <option value="iPhone 13">iPhone 13</option>
+                            <option value="iPhone 13 mini">iPhone 13 mini</option>
+                            <option value="iPhone 13 Pro">iPhone 13 Pro</option>
+                            <option value="iPhone 13 Pro Max">iPhone 13 Pro Max</option>
+                            <option value="iPhone 14">iPhone 14</option>
+                            <option value="iPhone 14 Plus">iPhone 14 Plus</option>
+                            <option value="iPhone 14 Pro">iPhone 14 Pro</option>
+                            <option value="iPhone 14 Pro Max">iPhone 14 Pro Max</option>
                             <option value="iPhone 15">iPhone 15</option>
+                            <option value="iPhone 15 Plus">iPhone 15 Plus</option>
                             <option value="iPhone 15 Pro">iPhone 15 Pro</option>
                             <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
-                            <option value="Samsung Galaxy S24">Samsung Galaxy S24</option>
-                            <option value="Samsung Galaxy S24 Ultra">Samsung Galaxy S24 Ultra</option>
-                            <option value="Google Pixel 8">Google Pixel 8</option>
-                            </select>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -297,14 +305,12 @@
             const caseMockup = document.getElementById('caseMockup');
             const previewText = document.getElementById('previewText');
             const customText = document.getElementById('customText');
-            // const colorOptions = document.querySelectorAll('.color-option'); // SUPPRIMÉ
-            // const selectedColorInput = document.getElementById('selectedColor'); // SUPPRIMÉ
             const customImageInput = document.getElementById('customImage');
             const uploadedImagePreview = document.getElementById('uploadedImagePreview');
             const caseForm = document.getElementById('caseForm');
 
             // Valeurs par défaut pour la couleur de la coque, car elle n'est plus sélectionnable
-            const defaultCaseColor = '#cccccc'; // Ou une autre couleur par défaut pour l'affichage visuel
+            const defaultCaseColor = '#cccccc'; // Couleur interne pour le mockup par défaut si pas d'image
             let selectedColorName = 'Coque Standard'; // Nom pour l'affichage dans le panier
 
 
@@ -319,9 +325,6 @@
             } else {
                 console.warn("coques.html: Élément 'customText' non trouvé.");
             }
-
-            // --- GESTION DE LA COULEUR DE COQUE SUPPRIMÉE ICI ---
-            // if (colorOptions.length > 0) { ... } else { ... }
 
             // Initialiser l'image de la coque si nécessaire (puisqu'il n'y a plus de sélecteur de couleur)
             if (caseMockup) {
@@ -359,7 +362,6 @@
                     const phoneModel = document.getElementById('phoneModel').value;
                     const quantity = parseInt(document.getElementById('quantity').value);
                     const customTextValue = customText.value.trim();
-                    // const color = selectedColorInput.value; // SUPPRIMÉ
                     const customImageFile = customImageInput.files[0];
 
                     if (quantity < 1) {
@@ -397,11 +399,6 @@
                     caseMockup.src = "https://via.placeholder.com/500x500/cccccc/FFFFFF?text=Coque+Standard";
                     uploadedImagePreview.src = '';
                     uploadedImagePreview.style.display = 'none';
-                    // Suppression des lignes de réinitialisation de couleur
-                    // document.querySelector('.color-option.selected').classList.remove('selected');
-                    // document.querySelector('.color-option[data-color="#transparent"]').classList.add('selected');
-                    // selectedColorName = 'Transparente';
-                    // selectedColorInput.value = '#transparent';
                 });
             } else {
                 console.error("coques.html: Élément 'caseForm' non trouvé. Le formulaire ne sera pas fonctionnel.");
