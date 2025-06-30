@@ -110,6 +110,12 @@
             color: #555555;
         }
 
+        /* Style spécifique pour le texte de couleur dans le panier si le t-shirt est blanc */
+        .color-text-black {
+            color: #333333 !important; /* Force la couleur noire */
+        }
+
+
         .cart-item-controls {
             display: flex;
             align-items: center;
@@ -317,10 +323,17 @@
                     listItem.classList.add('cart-item');
                     listItem.dataset.itemId = item.id; // Stocke l'ID pour la suppression/maj
 
+                    // Détermine la couleur d'affichage du texte pour la couleur du t-shirt
+                    let textColorForColorName = item.color;
+                    if (item.color === '#ffffff') { // Si la couleur du t-shirt est blanche
+                        textColorForColorName = '#333333'; // Texte noir
+                    }
+
+
                     let itemDetailsHTML = `
                         <div class="cart-item-details">
                             <h3>${item.name}</h3>
-                            <p>Couleur: <span style="font-weight: bold; color: ${item.color};">${item.color_name || item.color}</span></p>
+                            <p>Couleur: <span style="font-weight: bold; color: ${textColorForColorName};">${item.color_name || item.color}</span></p>
                             <p>Taille: <strong>${item.size}</strong></p>
                     `;
                     if (item.customText) {
