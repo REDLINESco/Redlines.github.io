@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REDLINES - Votre Passion. Votre Style. Personnalisé.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles CSS pour REDLINES */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Fond très foncé */
+            color: #f0f0f0; /* Texte clair */
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        header {
+            background-color: #0d0d0d;
+            padding: 20px 0;
+            border-bottom: 3px solid #e50000; /* Ligne rouge distinctive */
+        }
+
+        .logo {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 2.8em;
+            color: #e50000; /* Rouge vif pour le logo */
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e50000;
+        }
+
+        .hero {
+            background: url('https://via.placeholder.com/1500x600/333333/FFFFFF?text=Voiture+Sportive+Dynamique') no-repeat center center/cover;
+            color: white;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Ombre pour rendre le texte lisible */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: #e50000;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #e50000;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #ff3333;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .section-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 2.5em;
+            color: #e50000;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .product-card {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 380px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-card-content {
+            padding: 20px;
+        }
+
+        .product-card h3 {
+            color: #e50000;
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 0.95em;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #0d0d0d;
+            color: #cccccc;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 0.9em;
+            border-top: 3px solid #e50000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 2em;
+            }
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">REDLINES</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="tshirts.html">T-shirts Personnalisables</a></li>
+                <li><a href="coques.html">Coques de Téléphone</a></li>
+                <li><a href="about.html">À Propos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Libérez Votre Passion.</h1>
+                <p>Découvrez notre collection unique de vêtements et d'accessoires inspirés par l'adrénaline et la performance automobile. Créez votre style, personnalisé juste pour vous.</p>
+                <a href="tshirts.html" class="btn">Découvrir la Collection</a>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">Nos Créations Phares</h2>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/600x400/FF0000/FFFFFF?text=T-Shirt+Personnalise" alt="T-shirt personnalisé REDLINES">
+                <div class="product-card-content">
+                    <h3>T-shirts Personnalisables</h3>
+                    <p>Concevez le t-shirt de vos rêves avec nos motifs exclusifs et votre touche personnelle. Qualité premium et design percutant.</p>
+                    <a href="tshirts.html" class="btn">Créer Mon T-shirt</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/600x400/333333/FFFFFF?text=Coque+Personnalisee" alt="Coque de téléphone personnalisée REDLINES">
+                <div class="product-card-content">
+                    <h3>Coques de Téléphone Personnalisables</h3>
+                    <p>Protégez votre mobile avec style. Coques robustes et designs inspirés des voitures de sport. Compatible avec les plus grandes marques.</p>
+                    <a href="coques.html" class="btn">Personnaliser Ma Coque</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">Pourquoi Choisir REDLINES ?</h2>
+            <div class="product-card" style="max-width: 300px;">
+                <div class="product-card-content">
+                    <h3>Design Unique</h3>
+                    <p>Des créations originales et exclusives, pensées pour les passionnés d'automobile.</p>
+                </div>
+            </div>
+            <div class="product-card" style="max-width: 300px;">
+                <div class="product-card-content">
+                    <h3>Personnalisation</h3>
+                    <p>Votre style, vos idées. Créez des produits qui vous ressemblent vraiment.</p>
+                </div>
+            </div>
+            <div class="product-card" style="max-width: 300px;">
+                <div class="product-card-content">
+                    <h3>Qualité Premium</h3>
+                    <p>Matériaux durables et impressions haute définition pour une longévité maximale.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 REDLINES. Tous droits réservés.</p>
+        <p><a href="about.html" style="color: #e50000; text-decoration: none;">En savoir plus sur REDLINES</a> | Contactez-nous</p>
+    </footer>
+
+</body>
+</html>
