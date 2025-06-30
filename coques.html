@@ -233,65 +233,9 @@
         </nav>
     </header>
 
-    <main>
-        <h1 class="page-title">Créez Votre Coque de Téléphone Personnalisée</h1>
+    <h1 class="page-title">Créez Votre Coque de Téléphone Personnalisée</h1>
 
-        <section class="customization-section">
-            <div class="case-preview">
-                <img id="caseMockup" src="coques.png" alt="Aperçu de la Coque REDLINES">
-                <div id="previewText" class="preview-text">Votre Texte Ici</div>
-                <img id="uploadedImagePreview" class="uploaded-image-preview" src="" alt="Image personnalisée">
-
-                <p style="font-size: 0.85em; color: #777; margin-top: 20px;">
-                    *Note : Cet aperçu est un exemple simple. Les options avancées (déplacement/redimensionnement interactif) nécessitent un outil de personnalisation externe.
-                </p>
-            </div>
-
-            <div class="customization-form">
-                <form id="caseForm">
-                    <div class="form-group">
-                        <label for="phoneModel">Modèle de Téléphone :</label>
-                        <select id="phoneModel" name="modele_telephone">
-                            <option value="iPhone 12">iPhone 12</option>
-                            <option value="iPhone 12 mini">iPhone 12 mini</option>
-                            <option value="iPhone 12 Pro">iPhone 12 Pro</option>
-                            <option value="iPhone 12 Pro Max">iPhone 12 Pro Max</option>
-                            <option value="iPhone 13">iPhone 13</option>
-                            <option value="iPhone 13 mini">iPhone 13 mini</option>
-                            <option value="iPhone 13 Pro">iPhone 13 Pro</option>
-                            <option value="iPhone 13 Pro Max">iPhone 13 Pro Max</option>
-                            <option value="iPhone 14">iPhone 14</option>
-                            <option value="iPhone 14 Plus">iPhone 14 Plus</option>
-                            <option value="iPhone 14 Pro">iPhone 14 Pro</option>
-                            <option value="iPhone 14 Pro Max">iPhone 14 Pro Max</option>
-                            <option value="iPhone 15">iPhone 15</option>
-                            <option value="iPhone 15 Plus">iPhone 15 Plus</option>
-                            <option value="iPhone 15 Pro">iPhone 15 Pro</option>
-                            <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="quantity">Nombre d'exemplaires :</label>
-                        <input type="number" id="quantity" name="quantite" value="1" min="1">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="customText">Texte à inscrire sur la Coque :</label>
-                        <textarea id="customText" name="texte_personnalise" rows="4" placeholder="Votre nom, une citation, etc."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="customImage">Image à ajouter (optionnel) :</label>
-                        <input type="file" id="customImage" name="image_personnalisee" accept="image/*">
-                        <p style="font-size: 0.85em; color: #777;">*L'image sera ajoutée en dessous de l'aperçu de la coque. Pas de positionnement interactif direct.</p>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Ajouter à ma commande</button>
-                </form>
-            </div>
-        </section>
-    </main>
+    <div id="root"></div> 
 
     <footer>
         <p>&copy; 2025 REDLINES. Tous droits réservés.</p>
