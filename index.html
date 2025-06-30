@@ -13,39 +13,39 @@
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a; /* Fond très foncé */
-            color: #f0f0f0; /* Texte clair */
+            background-color: #ffffff; /* Fond blanc */
+            color: #333333; /* Texte noir/gris foncé */
             line-height: 1.6;
             text-align: center;
         }
 
         header {
-            background-color: #0d0d0d;
+            background-color: #f8f8f8; /* Un blanc cassé pour l'en-tête */
             padding: 20px 0;
             border-bottom: 3px solid #e50000; /* Ligne rouge distinctive */
-            display: flex; /* Utilisation de flexbox pour centrer le logo et la nav */
-            flex-direction: column; /* Pour empiler logo et nav */
-            align-items: center; /* Pour centrer horizontalement */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .logo-img { /* Nouveau style pour le logo image */
-            max-width: 200px; /* Ajustez la taille selon vos besoins */
+        .logo-img {
+            max-width: 200px;
             height: auto;
-            display: block; /* Pour éviter l'espace en dessous de l'image */
-            margin-bottom: 10px; /* Espace entre le logo et la nav */
+            display: block;
+            margin-bottom: 10px;
         }
 
         nav ul {
             list-style: none;
             padding: 0;
-            margin: 0; /* Supprimez le margin-top car il est géré par le margin-bottom du logo */
+            margin: 0;
             display: flex;
             justify-content: center;
             gap: 30px;
         }
 
         nav a {
-            color: #f0f0f0;
+            color: #333333; /* Liens de navigation en noir */
             text-decoration: none;
             font-weight: 700;
             padding: 5px 10px;
@@ -57,8 +57,9 @@
         }
 
         .hero {
+            /* L'image de fond reste la même, l'overlay s'adapte */
             background: url('https://via.placeholder.com/1500x600/333333/FFFFFF?text=Voiture+Sportive+Dynamique') no-repeat center center/cover;
-            color: white;
+            color: white; /* Le texte sur la bannière reste blanc pour le contraste */
             padding: 100px 20px;
             position: relative;
         }
@@ -124,16 +125,16 @@
         .section-title {
             font-family: 'Chakra Petch', sans-serif;
             font-size: 2.5em;
-            color: #e50000;
+            color: #e50000; /* Reste rouge */
             margin-top: 60px;
             margin-bottom: 30px;
             width: 100%;
         }
 
         .product-card {
-            background-color: #2a2a2a;
+            background-color: #f0f0f0; /* Fond des cartes produits en gris clair pour contraste */
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Ombre plus légère */
             overflow: hidden;
             width: 100%;
             max-width: 380px;
@@ -157,7 +158,7 @@
         }
 
         .product-card h3 {
-            color: #e50000;
+            color: #e50000; /* Reste rouge */
             font-size: 1.8em;
             margin-top: 0;
             margin-bottom: 10px;
@@ -165,13 +166,13 @@
 
         .product-card p {
             font-size: 0.95em;
-            color: #cccccc;
+            color: #555555; /* Texte des cartes en gris foncé */
             margin-bottom: 20px;
         }
 
         footer {
-            background-color: #0d0d0d;
-            color: #cccccc;
+            background-color: #f8f8f8; /* Fond du pied de page en blanc cassé */
+            color: #333333; /* Texte du pied de page en noir */
             padding: 30px 20px;
             margin-top: 60px;
             font-size: 0.9em;
