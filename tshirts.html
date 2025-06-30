@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REDLINES - T-shirts Personnalisables</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles CSS Généraux (Repris de l'accueil) */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Fond blanc */
+            color: #333333; /* Texte noir/gris foncé */
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            padding: 20px 0;
+            border-bottom: 3px solid #e50000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-img {
+            max-width: 300px;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #333333;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e50000;
+        }
+
+        /* Styles spécifiques à la page T-shirt */
+        .page-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 3em;
+            color: #e50000;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        .customization-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start; /* Aligne les éléments en haut */
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+        }
+
+        .tshirt-preview {
+            flex: 1; /* Prend l'espace disponible */
+            min-width: 300px; /* Taille minimale */
+            max-width: 500px; /* Taille maximale */
+            position: relative;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .tshirt-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .preview-text {
+            position: absolute;
+            top: 50%; /* Centre le texte verticalement */
+            left: 50%; /* Centre le texte horizontalement */
+            transform: translate(-50%, -50%); /* Ajuste le centrage parfait */
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 2em; /* Taille par défaut du texte */
+            color: #333333; /* Couleur du texte sur le t-shirt */
+            text-align: center;
+            width: 80%; /* Pour que le texte ne déborde pas */
+            word-wrap: break-word; /* Casse les mots longs */
+        }
+
+        .uploaded-image-preview { /* Pour l'aperçu de l'image uploadée */
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            display: none; /* Caché par défaut */
+        }
+
+        .customization-form {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #e50000;
+        }
+
+        .form-group select,
+        .form-group input[type="number"],
+        .form-group textarea {
+            width: calc(100% - 20px); /* Ajuste pour le padding */
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .color-option.selected {
+            border-color: #e50000;
+        }
+        .color-option[data-color="#000000"] { background-color: #000000; }
+        .color-option[data-color="#ffffff"] { background-color: #ffffff; border: 1px solid #ccc; } /* Bordure pour blanc */
+        .color-option[data-color="#e50000"] { background-color: #e50000; }
+        .color-option[data-color="#0056b3"] { background-color: #0056b3; } /* Bleu */
+        .color-option[data-color="#999999"] { background-color: #999999; } /* Gris */
+
+
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: #e50000;
+            color: white;
+            padding: 15px 0;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 30px;
+        }
+
+        .btn-submit:hover {
+            background-color: #ff3333;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #f8f8f8;
+            color: #333333;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 0.9em;
+            border-top: 3px solid #e50000;
+        }
+
+        footer a {
+            color: #e50000;
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo-img {
+                max-width: 200px;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .page-title {
+                font-size: 2.2em;
+            }
+            .customization-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tshirt-preview, .customization-form {
+                max-width: 100%; /* Permet aux blocs de prendre toute la largeur sur mobile */
+            }
+            .tshirt-preview {
+                padding: 15px;
+            }
+            .customization-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Logo REDLINES" class="logo-img">
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="tshirts.html">T-shirts Personnalisables</a></li>
+                <li><a href="coques.html">Coques de Téléphone</a></li>
+                <li><a href="about.html">À Propos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Créez Votre T-shirt Personnalisé</h1>
+
+        <section class="customization-section">
+            <div class="tshirt-preview">
+                <img id="tshirtMockup" src="https://via.placeholder.com/500x500/cccccc/FFFFFF?text=T-shirt+Standard" alt="Aperçu du T-shirt">
+                <div id="previewText" class="preview-text">Votre Texte Ici</div>
+                <img id="uploadedImagePreview" class="uploaded-image-preview" src="" alt="Image personnalisée">
+
+                <p style="font-size: 0.85em; color: #777; margin-top: 20px;">
+                    *Note : Cet aperçu est un exemple simple. Les options avancées (déplacement/redimensionnement interactif) nécessitent un outil de personnalisation externe.
+                </p>
+            </div>
+
+            <div class="customization-form">
+                <form id="tshirtForm">
+                    <div class="form-group">
+                        <label for="tshirtColor">Couleur du T-shirt :</label>
+                        <div class="color-options">
+                            <div class="color-option selected" data-color="#ffffff" data-mockup="https://via.placeholder.com/500x500/ffffff/333333?text=T-shirt+Blanc" title="Blanc"></div>
+                            <div class="color-option" data-color="#000000" data-mockup="https://via.placeholder.com/500x500/000000/FFFFFF?text=T-shirt+Noir" title="Noir"></div>
+                            <div class="color-option" data-color="#e50000" data-mockup="https://via.placeholder.com/500x500/e50000/FFFFFF?text=T-shirt+Rouge" title="Rouge"></div>
+                            <div class="color-option" data-color="#0056b3" data-mockup="https://via.placeholder.com/500x500/0056b3/FFFFFF?text=T-shirt+Bleu" title="Bleu"></div>
+                            <div class="color-option" data-color="#999999" data-mockup="https://via.placeholder.com/500x500/999999/FFFFFF?text=T-shirt+Gris" title="Gris"></div>
+                        </div>
+                        <input type="hidden" id="selectedColor" name="couleur" value="#ffffff">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tshirtSize">Taille :</label>
+                        <select id="tshirtSize" name="taille">
+                            <option value="S">S</option>
+                            <option value="M" selected>M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Nombre d'exemplaires :</label>
+                        <input type="number" id="quantity" name="quantite" value="1" min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customText">Texte à inscrire sur le T-shirt :</label>
+                        <textarea id="customText" name="texte_personnalise" rows="4" placeholder="Votre message, nom, numéro..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customImage">Image à ajouter (optionnel) :</label>
+                        <input type="file" id="customImage" name="image_personnalisee" accept="image/*">
+                        <p style="font-size: 0.85em; color: #777;">*L'image sera ajoutée en dessous de l'aperçu du t-shirt. Pas de positionnement interactif direct.</p>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Ajouter à ma commande</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 REDLINES. Tous droits réservés.</p>
+        <p><a href="about.html">En savoir plus sur REDLINES</a> | Contactez-nous</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tshirtMockup = document.getElementById('tshirtMockup');
+            const previewText = document.getElementById('previewText');
+            const customText = document.getElementById('customText');
+            const colorOptions = document.querySelectorAll('.color-option');
+            const selectedColorInput = document.getElementById('selectedColor');
+            const customImageInput = document.getElementById('customImage');
+            const uploadedImagePreview = document.getElementById('uploadedImagePreview');
+
+            // --- Gestion du texte de prévisualisation ---
+            customText.addEventListener('input', function() {
+                previewText.textContent = this.value;
+                if (this.value.trim() === '') {
+                    previewText.textContent = 'Votre Texte Ici'; // Texte par défaut si vide
+                }
+            });
+
+            // --- Gestion de la couleur du T-shirt et mise à jour du mockup ---
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Supprimer la sélection actuelle
+                    colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    // Ajouter la sélection à l'élément cliqué
+                    this.classList.add('selected');
+
+                    // Mettre à jour la couleur dans l'input caché
+                    selectedColorInput.value = this.dataset.color;
+
+                    // Changer l'image du mockup en fonction de la couleur sélectionnée
+                    const mockupUrl = this.dataset.mockup;
+                    if (mockupUrl) {
+                        tshirtMockup.src = mockupUrl;
+                    }
+                });
+            });
+
+            // --- Gestion de l'aperçu de l'image uploadée ---
+            customImageInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        uploadedImagePreview.src = e.target.result;
+                        uploadedImagePreview.style.display = 'block'; // Afficher l'aperçu
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    uploadedImagePreview.src = '';
+                    uploadedImagePreview.style.display = 'none'; // Cacher si pas de fichier
+                }
+            });
+
+            // --- Gestion de la soumission du formulaire ---
+            // Pour un site HTML simple sans backend, cette soumission ne fera rien d'utile
+            // Il faudrait intégrer un service tiers ou un formulaire Google Forms ici
+            const tshirtForm = document.getElementById('tshirtForm');
+            tshirtForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+                // Récupérer les données du formulaire
+                const formData = new FormData(tshirtForm);
+                const data = {};
+                for (let [key, value] of formData.entries()) {
+                    data[key] = value;
+                }
+
+                alert("Commande en simulation :\n" +
+                      "Taille: " + data.taille + "\n" +
+                      "Couleur: " + data.couleur + "\n" +
+                      "Quantité: " + data.quantite + "\n" +
+                      "Texte: " + data.texte_personnalise + "\n" +
+                      "Image: " + (data.image_personnalisee.name || "Aucune") + "\n\n" +
+                      "Pour une vraie commande, ces données seraient envoyées à un système de traitement.");
+
+                // Ici, vous enverriez ces données à votre système de commande
+                // Ex: via une API, un formulaire Google Forms (si intégré), ou simplement un mailto: si la commande est très simple.
+            });
+
+            // Initialiser l'aperçu du texte et de la couleur
+            previewText.textContent = customText.value || 'Votre Texte Ici';
+        });
+    </script>
+</body>
+</html>
