@@ -2,7 +2,7 @@
   "name": "mon-projet-react-redlines",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://<VOTRE_USERNAME>.github.io/<VOTRE_NOM_DE_REPO>/", // <-- AJOUTEZ CETTE LIGNE
+  "homepage": "https://redlinesco.github.io/Redlines.github.io/", // <-- AJOUTEZ CETTE LIGNE
   "dependencies": {
     // ...
   },
