@@ -324,86 +324,111 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const tshirtMockup = document.getElementById('tshirtMockup');
-            const previewText = document.getElementById('previewText');
-            const customText = document.getElementById('customText');
-            const colorOptions = document.querySelectorAll('.color-option');
-            const selectedColorInput = document.getElementById('selectedColor');
-            const customImageInput = document.getElementById('customImage');
-            const uploadedImagePreview = document.getElementById('uploadedImagePreview');
+    document.addEventListener('DOMContentLoaded', function() {
+        const tshirtMockup = document.getElementById('tshirtMockup');
+        const previewText = document.getElementById('previewText');
+        const customText = document.getElementById('customText');
+        const colorOptions = document.querySelectorAll('.color-option');
+        const selectedColorInput = document.getElementById('selectedColor');
+        const customImageInput = document.getElementById('customImage');
+        const uploadedImagePreview = document.getElementById('uploadedImagePreview');
+        const tshirtForm = document.getElementById('tshirtForm');
 
-            // --- Gestion du texte de prévisualisation ---
-            customText.addEventListener('input', function() {
-                previewText.textContent = this.value;
-                if (this.value.trim() === '') {
-                    previewText.textContent = 'Votre Texte Ici'; // Texte par défaut si vide
-                }
-            });
+        let selectedColorName = 'Blanc'; // Pour le nom de la couleur dans le panier
 
-            // --- Gestion de la couleur du T-shirt et mise à jour du mockup ---
-            colorOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Supprimer la sélection actuelle
-                    colorOptions.forEach(opt => opt.classList.remove('selected'));
-                    // Ajouter la sélection à l'élément cliqué
-                    this.classList.add('selected');
-
-                    // Mettre à jour la couleur dans l'input caché
-                    selectedColorInput.value = this.dataset.color;
-
-                    // Changer l'image du mockup en fonction de la couleur sélectionnée
-                    const mockupUrl = this.dataset.mockup;
-                    if (mockupUrl) {
-                        tshirtMockup.src = mockupUrl;
-                    }
-                });
-            });
-
-            // --- Gestion de l'aperçu de l'image uploadée ---
-            customImageInput.addEventListener('change', function() {
-                if (this.files && this.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        uploadedImagePreview.src = e.target.result;
-                        uploadedImagePreview.style.display = 'block'; // Afficher l'aperçu
-                    };
-                    reader.readAsDataURL(this.files[0]);
-                } else {
-                    uploadedImagePreview.src = '';
-                    uploadedImagePreview.style.display = 'none'; // Cacher si pas de fichier
-                }
-            });
-
-            // --- Gestion de la soumission du formulaire ---
-            // Pour un site HTML simple sans backend, cette soumission ne fera rien d'utile
-            // Il faudrait intégrer un service tiers ou un formulaire Google Forms ici
-            const tshirtForm = document.getElementById('tshirtForm');
-            tshirtForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Empêche l'envoi du formulaire par défaut
-
-                // Récupérer les données du formulaire
-                const formData = new FormData(tshirtForm);
-                const data = {};
-                for (let [key, value] of formData.entries()) {
-                    data[key] = value;
-                }
-
-                alert("Commande en simulation :\n" +
-                      "Taille: " + data.taille + "\n" +
-                      "Couleur: " + data.couleur + "\n" +
-                      "Quantité: " + data.quantite + "\n" +
-                      "Texte: " + data.texte_personnalise + "\n" +
-                      "Image: " + (data.image_personnalisee.name || "Aucune") + "\n\n" +
-                      "Pour une vraie commande, ces données seraient envoyées à un système de traitement.");
-
-                // Ici, vous enverriez ces données à votre système de commande
-                // Ex: via une API, un formulaire Google Forms (si intégré), ou simplement un mailto: si la commande est très simple.
-            });
-
-            // Initialiser l'aperçu du texte et de la couleur
-            previewText.textContent = customText.value || 'Votre Texte Ici';
+        // --- Gestion du texte de prévisualisation ---
+        customText.addEventListener('input', function() {
+            previewText.textContent = this.value;
+            if (this.value.trim() === '') {
+                previewText.textContent = 'Votre Texte Ici';
+            }
         });
-    </script>
+
+        // --- Gestion de la couleur du T-shirt et mise à jour du mockup ---
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                colorOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+
+                selectedColorInput.value = this.dataset.color;
+                selectedColorName = this.dataset.name; // Met à jour le nom de la couleur
+
+                const mockupUrl = this.dataset.mockup;
+                if (mockupUrl) {
+                    tshirtMockup.src = mockupUrl;
+                }
+            });
+        });
+
+        // --- Gestion de l'aperçu de l'image uploadée ---
+        customImageInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImagePreview.src = e.target.result;
+                    uploadedImagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                uploadedImagePreview.src = '';
+                uploadedImagePreview.style.display = 'none';
+            }
+        });
+
+        // --- Gestion de la soumission du formulaire et ajout au panier ---
+        tshirtForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Récupérer les données du formulaire
+            const size = document.getElementById('tshirtSize').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const customTextValue = customText.value.trim();
+            const color = selectedColorInput.value;
+            const customImageFile = customImageInput.files[0];
+
+            if (quantity < 1) {
+                alert("Veuillez entrer une quantité valide (au moins 1).");
+                return;
+            }
+
+            // Créer un objet pour l'article du panier
+            const cartItem = {
+                id: Date.now().toString(), // ID unique basé sur le timestamp
+                name: "T-shirt Personnalisé REDLINES",
+                size: size,
+                color: color,
+                color_name: selectedColorName, // Nom de la couleur pour affichage
+                quantity: quantity,
+                customText: customTextValue,
+                customImageName: customImageFile ? customImageFile.name : null,
+                // Note: L'image elle-même n'est pas stockée ici pour des raisons de taille et de complexité (backend nécessaire)
+            };
+
+            // Récupérer le panier existant ou initialiser un nouveau panier
+            let cart = JSON.parse(localStorage.getItem('redlinesCart')) || [];
+            cart.push(cartItem); // Ajouter le nouvel article
+
+            // Sauvegarder le panier mis à jour dans localStorage
+            localStorage.setItem('redlinesCart', JSON.stringify(cart));
+
+            alert("T-shirt ajouté au panier ! Vous pouvez maintenant aller au panier pour voir vos articles.");
+
+            // Optionnel: Réinitialiser le formulaire après l'ajout
+            tshirtForm.reset();
+            previewText.textContent = 'Votre Texte Ici';
+            tshirtMockup.src = "https://via.placeholder.com/500x500/cccccc/FFFFFF?text=T-shirt+Standard"; // Retour à l'image par défaut
+            uploadedImagePreview.src = '';
+            uploadedImagePreview.style.display = 'none';
+            document.querySelector('.color-option.selected').classList.remove('selected');
+            document.querySelector('.color-option[data-color="#ffffff"]').classList.add('selected'); // Réinitialiser le blanc
+            selectedColorName = 'Blanc';
+            selectedColorInput.value = '#ffffff';
+        });
+
+        // Initialiser l'aperçu du texte et de la couleur au chargement de la page
+        previewText.textContent = customText.value || 'Votre Texte Ici';
+        document.querySelector('.color-option[data-color="#ffffff"]').click(); // Sélectionne le blanc par défaut au chargement
+    });
+</script>
 </body>
 </html>
