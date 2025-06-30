@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REDLINES - Coques de Téléphone Personnalisables</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles CSS Généraux (Repris de l'accueil et tshirts) */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Fond blanc */
+            color: #333333; /* Texte noir/gris foncé */
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        header {
+            background-color: #f8f8f8; /* Un blanc cassé pour l'en-tête */
+            padding: 20px 0;
+            border-bottom: 3px solid #e50000; /* Ligne rouge distinctive */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-img {
+            max-width: 300px; /* Taille du logo */
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #333333; /* Liens de navigation en noir */
+            text-decoration: none;
+            font-weight: 700;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e50000;
+        }
+
+        /* Styles spécifiques à la page Coque (similaires aux T-shirts) */
+        .page-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 3em;
+            color: #e50000;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        .customization-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start; /* Aligne les éléments en haut */
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+        }
+
+        .case-preview { /* Renommé de .tshirt-preview */
+            flex: 1; /* Prend l'espace disponible */
+            min-width: 300px; /* Taille minimale */
+            max-width: 500px; /* Taille maximale */
+            position: relative;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .case-preview img { /* Renommé de .tshirt-preview img */
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .preview-text {
+            position: absolute;
+            top: 50%; /* Centre le texte verticalement */
+            left: 50%; /* Centre le texte horizontalement */
+            transform: translate(-50%, -50%); /* Ajuste le centrage parfait */
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 2em; /* Taille par défaut du texte */
+            color: #333333; /* Couleur du texte sur la coque */
+            text-align: center;
+            width: 80%; /* Pour que le texte ne déborde pas */
+            word-wrap: break-word; /* Casse les mots longs */
+        }
+
+        .uploaded-image-preview {
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            display: none; /* Caché par défaut */
+        }
+
+        .customization-form {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #e50000;
+        }
+
+        .form-group select,
+        .form-group input[type="number"],
+        .form-group textarea {
+            width: calc(100% - 20px); /* Ajuste pour le padding */
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .color-option.selected {
+            border-color: #e50000;
+        }
+        /* Couleurs des pastilles pour les coques (peuvent être différentes des t-shirts) */
+        .color-option[data-color="#transparent"] { background-color: #ffffff; border: 1px dashed #cccccc; } /* Simule le transparent */
+        .color-option[data-color="#000000"] { background-color: #000000; } /* Noir */
+        .color-option[data-color="#e50000"] { background-color: #e50000; } /* Rouge */
+        .color-option[data-color="#333333"] { background-color: #333333; } /* Gris foncé / Carbone */
+
+
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: #e50000;
+            color: white;
+            padding: 15px 0;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 30px;
+        }
+
+        .btn-submit:hover {
+            background-color: #ff3333;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #f8f8f8;
+            color: #333333;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 0.9em;
+            border-top: 3px solid #e50000;
+        }
+
+        footer a {
+            color: #e50000;
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo-img {
+                max-width: 200px;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .page-title {
+                font-size: 2.2em;
+            }
+            .customization-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .case-preview, .customization-form { /* Renommé */
+                max-width: 100%;
+            }
+            .case-preview { /* Renommé */
+                padding: 15px;
+            }
+            .customization-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Logo REDLINES" class="logo-img">
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="tshirts.html">T-shirts Personnalisables</a></li>
+                <li><a href="coques.html">Coques de Téléphone</a></li>
+                <li><a href="about.html">À Propos</a></li>
+                <li><a href="panier.html">Panier</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Créez Votre Coque de Téléphone Personnalisée</h1>
+
+        <section class="customization-section">
+            <div class="case-preview">
+                <img id="caseMockup" src="https://via.placeholder.com/500x500/cccccc/FFFFFF?text=Coque+Standard" alt="Aperçu de la Coque">
+                <div id="previewText" class="preview-text">Votre Texte Ici</div>
+                <img id="uploadedImagePreview" class="uploaded-image-preview" src="" alt="Image personnalisée">
+
+                <p style="font-size: 0.85em; color: #777; margin-top: 20px;">
+                    *Note : Cet aperçu est un exemple simple. Les options avancées (déplacement/redimensionnement interactif) nécessitent un outil de personnalisation externe.
+                </p>
+            </div>
+
+            <div class="customization-form">
+                <form id="caseForm">
+                    <div class="form-group">
+                        <label for="phoneModel">Modèle de Téléphone :</label>
+                        <select id="phoneModel" name="modele_telephone">
+                            <option value="iPhone 15">iPhone 15</option>
+                            <option value="iPhone 15 Pro">iPhone 15 Pro</option>
+                            <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
+                            <option value="Samsung Galaxy S24">Samsung Galaxy S24</option>
+                            <option value="Samsung Galaxy S24 Ultra">Samsung Galaxy S24 Ultra</option>
+                            <option value="Google Pixel 8">Google Pixel 8</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="caseColor">Couleur de la Coque :</label>
+                        <div class="color-options">
+                            <div class="color-option selected" data-color="#transparent" data-mockup="https://via.placeholder.com/500x500/ffffff/333333?text=Coque+Transparente" title="Transparent" data-name="Transparente"></div>
+                            <div class="color-option" data-color="#000000" data-mockup="https://via.placeholder.com/500x500/000000/FFFFFF?text=Coque+Noire" title="Noir" data-name="Noire"></div>
+                            <div class="color-option" data-color="#e50000" data-mockup="https://via.placeholder.com/500x500/e50000/FFFFFF?text=Coque+Rouge" title="Rouge" data-name="Rouge"></div>
+                            <div class="color-option" data-color="#333333" data-mockup="https://via.placeholder.com/500x500/333333/FFFFFF?text=Coque+Carbone" title="Carbone" data-name="Effet Carbone"></div>
+                        </div>
+                        <input type="hidden" id="selectedColor" name="couleur" value="#transparent">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Nombre d'exemplaires :</label>
+                        <input type="number" id="quantity" name="quantite" value="1" min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customText">Texte à inscrire sur la Coque :</label>
+                        <textarea id="customText" name="texte_personnalise" rows="4" placeholder="Votre nom, une citation, etc."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customImage">Image à ajouter (optionnel) :</label>
+                        <input type="file" id="customImage" name="image_personnalisee" accept="image/*">
+                        <p style="font-size: 0.85em; color: #777;">*L'image sera ajoutée en dessous de l'aperçu de la coque. Pas de positionnement interactif direct.</p>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Ajouter à ma commande</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 REDLINES. Tous droits réservés.</p>
+        <p><a href="about.html">En savoir plus sur REDLINES</a> | <a href="contact.html">Contactez-nous</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("coques.html: Script chargé.");
+
+            const caseMockup = document.getElementById('caseMockup'); // Renommé
+            const previewText = document.getElementById('previewText');
+            const customText = document.getElementById('customText');
+            const colorOptions = document.querySelectorAll('.color-option');
+            const selectedColorInput = document.getElementById('selectedColor');
+            const customImageInput = document.getElementById('customImage');
+            const uploadedImagePreview = document.getElementById('uploadedImagePreview');
+            const caseForm = document.getElementById('caseForm'); // Renommé
+
+            let selectedColorName = 'Transparente'; // Nom par défaut pour le panier (pour les coques)
+
+            // --- Gestion du texte de prévisualisation ---
+            if (customText) {
+                customText.addEventListener('input', function() {
+                    previewText.textContent = this.value;
+                    if (this.value.trim() === '') {
+                        previewText.textContent = 'Votre Texte Ici';
+                    }
+                });
+            } else {
+                console.warn("coques.html: Élément 'customText' non trouvé.");
+            }
+
+            // --- Gestion de la couleur de la Coque et mise à jour du mockup ---
+            if (colorOptions.length > 0) {
+                colorOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        colorOptions.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+
+                        selectedColorInput.value = this.dataset.color;
+                        selectedColorName = this.dataset.name;
+
+                        const mockupUrl = this.dataset.mockup;
+                        if (mockupUrl) {
+                            caseMockup.src = mockupUrl; // Renommé
+                        }
+                    });
+                });
+                // Initialiser le transparent par défaut au chargement de la page
+                document.querySelector('.color-option[data-color="#transparent"]').click();
+            } else {
+                console.warn("coques.html: Aucune option de couleur trouvée.");
+            }
+
+            // --- Gestion de l'aperçu de l'image uploadée ---
+            if (customImageInput) {
+                customImageInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            uploadedImagePreview.src = e.target.result;
+                            uploadedImagePreview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                    } else {
+                        uploadedImagePreview.src = '';
+                        uploadedImagePreview.style.display = 'none';
+                    }
+                });
+            } else {
+                console.warn("coques.html: Élément 'customImage' non trouvé.");
+            }
+
+            // --- Gestion de la soumission du formulaire et ajout au panier ---
+            if (caseForm) { // Renommé
+                caseForm.addEventListener('submit', function(event) {
+                    console.log("coques.html: Formulaire soumis (event.preventDefault() appelé).");
+                    event.preventDefault();
+
+                    // Récupérer les données du formulaire
+                    const phoneModel = document.getElementById('phoneModel').value; // Nouveau champ
+                    const quantity = parseInt(document.getElementById('quantity').value);
+                    const customTextValue = customText.value.trim();
+                    const color = selectedColorInput.value;
+                    const customImageFile = customImageInput.files[0];
+
+                    if (quantity < 1) {
+                        alert("Veuillez entrer une quantité valide (au moins 1).");
+                        return;
+                    }
+
+                    // Créer un objet pour l'article du panier
+                    const cartItem = {
+                        id: Date.now().toString(),
+                        name: "Coque Personnalisée REDLINES", // Nom spécifique pour la coque
+                        size: phoneModel, // Utilise le champ 'size' pour stocker le modèle de téléphone pour la cohérence du panier
+                        color: color,
+                        color_name: selectedColorName,
+                        quantity: quantity,
+                        customText: customTextValue,
+                        customImageName: customImageFile ? customImageFile.name : null,
+                    };
+
+                    console.log("coques.html: Article à ajouter:", cartItem);
+
+                    // Récupérer le panier existant ou initialiser un nouveau panier
+                    let cart = JSON.parse(localStorage.getItem('redlinesCart')) || [];
+                    cart.push(cartItem);
+
+                    // Sauvegarder le panier mis à jour dans localStorage
+                    localStorage.setItem('redlinesCart', JSON.stringify(cart));
+                    console.log("coques.html: Panier sauvegardé dans localStorage:", cart);
+
+                    alert("Coque ajoutée au panier ! Vous pouvez maintenant aller au panier pour voir vos articles.");
+
+                    // Optionnel: Réinitialiser le formulaire après l'ajout
+                    caseForm.reset();
+                    previewText.textContent = 'Votre Texte Ici';
+                    caseMockup.src = "https://via.placeholder.com/500x500/cccccc/FFFFFF?text=Coque+Standard"; // Retour à l'image par défaut
+                    uploadedImagePreview.src = '';
+                    uploadedImagePreview.style.display = 'none';
+                    document.querySelector('.color-option.selected').classList.remove('selected');
+                    document.querySelector('.color-option[data-color="#transparent"]').classList.add('selected'); // Réinitialiser le transparent
+                    selectedColorName = 'Transparente';
+                    selectedColorInput.value = '#transparent';
+                });
+            } else {
+                console.error("coques.html: Élément 'caseForm' non trouvé. Le formulaire ne sera pas fonctionnel.");
+            }
+
+            // Initialiser l'aperçu du texte au chargement de la page si du texte est déjà là
+            if (customText && previewText) {
+                previewText.textContent = customText.value || 'Votre Texte Ici';
+            }
+        });
+    </script>
+</body>
+</html>
